@@ -50,43 +50,19 @@ $jml_kriteria = count($kriteria);
 
   <title>SPK - Metode Topsis</title>
   <!--bootstrap-->
-  <link href="tampilan/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="tampilan/css/bootstrap.min.css">
 
 </head>
 
 <body>
 
   <!--menu-->
-  <nav class="">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.php">SPK Pemilihan Dosen Terbaik Metode TOPSIS</a>
-      </div>
-
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="kriteria.php">Kriteria</a>
-          </li>
-          <li>
-            <a href="alternatif.php">Alternatif</a>
-          </li>
-          <li>
-            <a href="nilmat.php">Nilai Matriks</a>
-          </li>
-          <li>
-            <a href="hastop.php">Hasil Topsis</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <?php
+  include_once('navbar.php');
+  ?>
 
   <!--tabel-tabel-->
   <div class="container"> <!--container-->
@@ -420,34 +396,44 @@ $jml_kriteria = count($kriteria);
             <table class="table table-striped table-bordered table-hover">
               <thead>
                 <tr>
-                  <th>No</th>
+                  <!-- <th>No</th> -->
                   <th>Alternatif</th>
                   <th>Nama</th>
                   <th>V<sub>i</sub></th>
+                  <!-- <th>Ranking</th> -->
                 </tr>
               </thead>
               <tbody>
                 <?php
                 $i = 0;
                 $V = array();
-                $Y = array();
-                $Z = array();
-                $hasilakhir = array();
-
 
                 foreach ($data as $nama => $krit) {
                   echo "<tr>
-                            <td>" . (++$i) . "</td>
+                            <div class='d-none'>" . (++$i) . "</div>
                             <th>A{$i}</th>
                             <td>{$nama}</td>";
                   foreach ($kriteria as $k) {
                     $V[$i - 1] = round(sqrt($dmin[$i - 1]), 4) / (round(sqrt($dmin[$i - 1]), 4) + round(sqrt($dplus[$i - 1]), 4));
                   }
-                  echo "<td>{$V[$i - 1]}</td></tr>\n";
+                  echo "<td>{$V[$i - 1]}</td>";
+                  arsort($V);
+                  // $n = 1;
+                  // foreach ($V as $v) {
+                  //   if ($v == $V[$i - 1]) {
+                  //     echo "<td>" . array_search($v, $V) + 1 . "</td></tr>\n";
+                  //   }
+                  // }
+                }
+                if (max($V)) {
+                  $dosenTerbaik = $nama;
                 }
                 ?>
               </tbody>
             </table>
+            <?php
+            echo "Jadi, skor tertinggi adalah " . $dosenTerbaik . " dengan skor " . max($V);
+            ?>
           </div>
         </div>
       </div>
