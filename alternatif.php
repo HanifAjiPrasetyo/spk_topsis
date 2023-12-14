@@ -15,7 +15,11 @@ include("koneksi.php");
 
   <title>SPK - Metode Topsis</title>
   <!--bootstrap-->
-  <link href="tampilan/css/bootstrap.min.css" rel="stylesheet">
+  <link href="styles/slider.css" rel="stylesheet" type="text/css" media="all">
+  <link rel="stylesheet" href="style/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="tampilan/css/bootstrap.min.css">
 
   <!--icon-->
   <link href="tampilan/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -24,37 +28,9 @@ include("koneksi.php");
 
 <body>
 
-  <!--menu-->
-  <nav class="">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="index.php">SPK Pemilihan Dosen Terbaik Metode TOPSIS</a>
-      </div>
 
-      <div class="collapse navbar-collapse">
-        <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="kriteria.php">Kriteria</a>
-          </li>
-          <li>
-            <a href="alternatif.php">Alternatif</a>
-          </li>
-          <li>
-            <a href="nilmat.php">Nilai Matriks</a>
-          </li>
-          <li>
-            <a href="hastop.php">Hasil Topsis</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+  <!--menu-->
+  <?php include_once('navbar.php') ?>
 
   <div class="container">
 
@@ -72,6 +48,12 @@ include("koneksi.php");
             <li>
               <a href="alternatiftambah.php" data-toggle="tab">Tambah Alternatif</a>
             </li>
+            <li class="ms-auto">
+              <?php
+              $jumlahAlt = $koneksi->query('SELECT COUNT(*) FROM tab_alternatif')->fetch_array();
+              ?>
+              <div class="mt-3 px-3 mb-3 fw-bold">Jumlah Alt : <?= $jumlahAlt[0] ?></div>
+            </li>
           </ul>
 
           <div class="panel-body">
@@ -82,7 +64,7 @@ include("koneksi.php");
                 <table class="table table-striped table-bordered table-hover">
                   <thead>
                     <tr>
-                      <th>#Alternatif</th>
+                      <!-- <th>#Alternatif</th> -->
                       <th>Nama Alternatif</th>
                       <th colspan="2">Aksi</th>
                     </tr>
@@ -90,16 +72,14 @@ include("koneksi.php");
                   <tbody>
                     <?php
                     $sql = $koneksi->query('SELECT * FROM tab_alternatif');
-                    $i = 1;
                     while ($row = $sql->fetch_array()) {
                     ?>
                       <tr>
-                        <td><?php echo $i ?></td>
+                        <!-- <td><?php echo $intId ?></td> -->
                         <td><?php echo $row[1] ?></td>
                         <td align="center"><a href="editalternatif.php?id_alternatif=<?php echo $row['id_alternatif'] ?>"><i class="fa fa-edit fa-fw"></i> </td>
-                        <td align="center"><a href="hapusalternatif.php?id_alternatif=<?php echo $row['id_alternatif'] ?>"><i class="fa fa-trash fa-fw" onclick="return confirm('Hapus alternatif?')"></i> </td>
+                        <td align="center"><a href="hapusalternatif.php?id_alternatif=<?php echo $row['id_alternatif'] ?>"><i class="fa fa-trash fa-fw text-danger" onclick="return confirm('Hapus alternatif?')"></i> </td>
                       </tr>
-                      <?php $i++; ?>
                     <?php } ?>
                   </tbody>
                 </table>
@@ -128,7 +108,7 @@ include("koneksi.php");
   </footer>
 
   <!--plugin-->
-  <script src="tampilan/js/bootstrap.min.js"></script>
+  <!-- <script src="tampilan/js/bootstrap.min.js"></script> -->
 
 </body>
 
