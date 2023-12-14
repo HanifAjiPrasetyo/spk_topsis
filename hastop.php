@@ -417,22 +417,21 @@ $jml_kriteria = count($kriteria);
                     $V[$i - 1] = round(sqrt($dmin[$i - 1]), 4) / (round(sqrt($dmin[$i - 1]), 4) + round(sqrt($dplus[$i - 1]), 4));
                   }
                   echo "<td>{$V[$i - 1]}</td>";
-                  arsort($V);
                   // $n = 1;
                   // foreach ($V as $v) {
                   //   if ($v == $V[$i - 1]) {
                   //     echo "<td>" . array_search($v, $V) + 1 . "</td></tr>\n";
                   //   }
                   // }
-                }
-                if (max($V)) {
-                  $dosenTerbaik = $nama;
+                  if ($V[$i - 1] == max($V)) {
+                    $namaDosen = $nama;
+                  }
                 }
                 ?>
               </tbody>
             </table>
             <?php
-            echo "Jadi, skor tertinggi adalah " . $dosenTerbaik . " dengan skor " . max($V);
+            echo "<b class='fs-3'>Jadi, dosen terbaik adalah " . $namaDosen . " dengan nilai preferensi " . max($V) . "</b>";
             ?>
           </div>
         </div>
