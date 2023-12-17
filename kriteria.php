@@ -71,10 +71,11 @@ include("koneksi.php");
                   <tbody>
                     <?php
                     $sql = $koneksi->query('SELECT * FROM tab_kriteria');
+                    $i = 1;
                     while ($row = $sql->fetch_array()) {
                     ?>
                       <tr>
-                        <td><?php echo $row[0] ?></td>
+                        <td><?php echo $i; ?></td>
                         <td><?php echo $row[1] ?></td>
                         <td><?php echo $row[2] ?></td>
                         <td><?php echo $row[3] ?></td>
@@ -82,13 +83,20 @@ include("koneksi.php");
                           <a href="editkriteria.php?id_kriteria=<?php echo $row['id_kriteria'] ?>"> <i class="fa fa-edit fa-fw"></i>
                         </td>
                         <td align="center">
-                          <a href="hapuskriteria.php?id_kriteria=<?php echo $row['id_kriteria'] ?>"> <i class="fa fa-trash fa-fw" onclick="return confirm('Hapus kriteria?')"></i>
+                          <a href="hapuskriteria.php?id_kriteria=<?php echo $row['id_kriteria'] ?>"> <i class="fa fa-trash fa-fw text-danger" onclick="return confirm('Hapus kriteria?')"></i>
                         </td>
                       </tr>
-
+                      <?php $i++; ?>
                     <?php } ?>
                   </tbody>
                 </table>
+                <?php
+                $q = $koneksi->query("SELECT SUM(bobot) FROM tab_kriteria");
+                $bobot = $q->fetch_array()[0];
+                ?>
+                <div class="fs-4 fw-bold">
+                  Total bobot : <?= round($bobot, 3)  ?>
+                </div>
                 <!--tabel kriteria-->
               </div>
             </div>

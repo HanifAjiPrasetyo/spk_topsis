@@ -337,7 +337,7 @@ $jml_kriteria = count($kriteria);
                   echo "<td>" . round(sqrt($dplus[$i - 1]), 4) . "</td>
                      </tr>\n";
                 }
-                ?>
+                ?>x
               </tbody>
             </table>
           </div>

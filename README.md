@@ -1,2 +1,2 @@
-# Spk-Topsis-Pemilihan-Dosen-OverPower
-Sistem Pendukung Keputusan Pemilihan Dosen OP Menggunakan Metode Topsis
+# Spk-Topsis-Pemilihan-Dosen-Terbaik
+Sistem Pendukung Keputusan Pemilihan Dosen Terbaik Menggunakan Metode Topsis
