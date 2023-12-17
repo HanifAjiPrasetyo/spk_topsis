@@ -13,6 +13,11 @@ while ($row = $kriteria->fetch_row()) {
   $status = $row[3];
 }
 
+$qBobot = $koneksi->query("SELECT SUM(bobot) FROM tab_kriteria");
+$totalBobot = round($qBobot->fetch_array()[0], 3);
+
+$sisaBobot = 1.00 - $totalBobot;
+
 ?>
 
 <!DOCTYPE html>
@@ -58,7 +63,8 @@ while ($row = $kriteria->fetch_row()) {
                     <input class="form-control" type="text" name="nama_kriteria" value=<?php echo $nama_kriteria; ?>>
                   </div>
                   <div class="form-group">
-                    <input class="form-control" type="text" name="bobot" value=<?php echo $bobot; ?>>
+                    <input class="form-control mb-2" type="text" name="bobot" value=<?php echo $bobot; ?>>
+                    <span class="ms-2 text-primary fs-5 fw-bold">Bobot saat ini : <?= $totalBobot; ?> | Sisa bobot : <?= $sisaBobot; ?></span>
                   </div>
                   <div class="form-group">
                     <input class="form-control" type="text" name="status" value=<?php echo $status; ?>>
@@ -67,6 +73,7 @@ while ($row = $kriteria->fetch_row()) {
                     <a href="kriteria.php"><button type="button" class="btn btn-danger">Batal</button></a>
                     <button type="submit" class="btn btn-success">Ubah</button>
                   </div>
+                  <div class="form-group">
                 </form>
               </div>
             </div>

@@ -17,6 +17,11 @@ if ($datakode) {
   $kode_otomatis = "1";
 }
 
+$qBobot = $koneksi->query("SELECT SUM(bobot) FROM tab_kriteria");
+$bobot = round($qBobot->fetch_array()[0], 3);
+
+$sisaBobot = 1.00 - $bobot;
+
 ?>
 
 <!DOCTYPE html>
@@ -73,7 +78,8 @@ if ($datakode) {
                   <input class="form-control" type="text" name="nm_krit" placeholder="Nama Kriteria">
                 </div>
                 <div class="form-group">
-                  <input class="form-control" type="text" name="bobot" placeholder="Bobot">
+                  <input class="form-control mb-2" type="text" name="bobot" placeholder="Bobot">
+                  <span class="ms-2 text-primary fs-5 fw-bold">Sisa bobot : <?= $sisaBobot;  ?></span>
                 </div>
                 <div class="form-group">
                   <select class="form-select form-control" name="status">
@@ -82,9 +88,17 @@ if ($datakode) {
                     <option value="Cost">Cost</option>
                   </select>
                 </div>
-                <div class="form-group">
-                  <button class="btn btn-success" type="submit" name="simpan">Tambah</button>
-                </div>
+
+                <?php if ($bobot >= 1) :  ?>
+                  <div class="form-group">
+                    <button class="btn btn-success" type="submit" name="simpan" disabled>Tambah</button>
+                    <span class="ms-2 text-danger fs-5 fw-bold">Total bobot sudah 1 atau 100%</span>
+                  </div>
+                <?php elseif ($bobot < 1) : ?>
+                  <div class="form-group">
+                    <button class="btn btn-success" type="submit" name="simpan">Tambah</button>
+                  </div>
+                <?php endif; ?>
               </form>
               <!--form kriteria-->
             </div>

@@ -2,7 +2,7 @@
 $host = "localhost";
 $user = "root";
 $pass = "";
-$db   = "topsis_";
+$db   = "_topsis";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db);
 if (!$koneksi) {
