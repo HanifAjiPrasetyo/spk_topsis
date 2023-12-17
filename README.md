@@ -1,2 +1,2 @@
-# Spk-Topsis-BusPariwisata
-Sistem Pendukung Keputusan Bus Pariwisata Menggunakan Metode Topsis
+# Spk-Topsis-PemilihanDosen
+Sistem Pendukung Keputusan Pemilihan Dosen Terbaik Menggunakan Metode Topsis
