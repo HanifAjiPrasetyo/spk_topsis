@@ -52,7 +52,7 @@ include("koneksi.php");
                               <option>Nama Alternatif</option>
                               <?php
                               //ambil data dari database
-                              $nama = $koneksi->query('SELECT * FROM tab_alternatif ORDER BY nama_alternatif');
+                              $nama = $koneksi->query('SELECT * FROM tab_alternatif');
                               while ($datalter = $nama->fetch_array()) {
                                 echo "<option value=\"$datalter[id_alternatif]\">$datalter[nama_alternatif]</option>\n";
                               }
@@ -64,7 +64,7 @@ include("koneksi.php");
                               <option>Nama Kriteria</option>
                               <?php
                               //ambil data dari database
-                              $krit = $koneksi->query('SELECT * FROM tab_kriteria ORDER BY nama_kriteria');
+                              $krit = $koneksi->query('SELECT * FROM tab_kriteria');
                               while ($datakrit = $krit->fetch_array()) {
                                 echo "<option value=\"$datakrit[id_kriteria]\">$datakrit[nama_kriteria]</option>\n";
                               }
@@ -201,7 +201,7 @@ include("koneksi.php");
             //pemanggilan data, matra dan pangkat
             $sql = $koneksi->query("SELECT * FROM tab_topsis
                   JOIN tab_alternatif ON tab_topsis.id_alternatif=tab_alternatif.id_alternatif
-                  JOIN tab_kriteria ON tab_topsis.id_kriteria=tab_kriteria.id_kriteria ORDER BY tab_alternatif.nama_alternatif") or die(mysqli_error($koneksi));
+                  JOIN tab_kriteria ON tab_topsis.id_kriteria=tab_kriteria.id_kriteria") or die(mysqli_error($koneksi));
             ?>
             <table class="table table-striped table-bordered table-hover">
               <thead>
