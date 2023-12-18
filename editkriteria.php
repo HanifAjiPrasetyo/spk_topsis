@@ -91,7 +91,7 @@ $sisaBobot = 1.00 - $totalBobot;
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
-            <em>##SPK Pemilihan Jasa Ekspedisi Metode Topsis</em>
+            <em>SPK Pemilihan Dosen Terbaik Metode Topsis</em>
           </div>
         </div>
       </div>

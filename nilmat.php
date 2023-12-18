@@ -225,6 +225,9 @@ include("koneksi.php");
                   echo ("<td align=\"left\">" . $row[2] . "</td>");
                 ?>
                   <td align="left">
+                    <a href="editnilmat.php?id_alternatif=<?php echo $row['id_alternatif'] ?>&id_kriteria=<?= $row['id_kriteria'] ?>" class="me-3">
+                      <i class="fa fa-edit fa-fw text-primary"></i>
+                    </a>
                     <a href="hapusnilmat.php?id_alternatif=<?php echo $row['id_alternatif'] ?>&id_kriteria=<?= $row['id_kriteria'] ?>">
                       <i class="fa fa-trash fa-fw text-danger" onclick="return confirm('Hapus nilai matriks?')"></i>
                     </a>
